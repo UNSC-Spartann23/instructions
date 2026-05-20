@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pet Care Instructions</title>
+<style>
+  :root {
+    --bg: #f9f7f4;
+    --card: #ffffff;
+    --border: #e0dbd4;
+    --text: #2c2c2c;
+    --muted: #6b6560;
+    --accent: #5b7e6e;
+    --accent2: #8c6d4f;
+    --warn: #c0392b;
+    --warn-bg: #fdf0ef;
+    --tag-bg: #eef3f0;
+    --radius: 12px;
+    --shadow: 0 2px 8px rgba(0,0,0,0.07);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    padding-bottom: 40px;
+  }
+  header {
+    background: var(--accent);
+    color: white;
+    padding: 24px 20px 16px;
+    text-align: center;
+  }
+  header h1 { font-size: 1.6rem; font-weight: 700; }
+  header p { font-size: 0.95rem; opacity: 0.85; margin-top: 4px; }
+  nav {
+    display: flex;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav a {
+    flex: 1;
+    text-align: center;
+    padding: 14px 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  nav a.active, nav a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .section { display: none; padding: 20px 16px; max-width: 640px; margin: 0 auto; }
+  .section.active { display: block; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+  }
+  .card h2 { font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+  .card h3 { font-size: 0.95rem; font-weight: 600; color: var(--accent2); margin: 12px 0 4px; }
+  .time-block { display: flex; gap: 14px; align-items: flex-start; }
+  .time-label { font-size: 1rem; font-weight: 700; color: var(--accent); min-width: 52px; padding-top: 2px; }
+  .time-content { flex: 1; }
+  .time-content strong { display: block; font-size: 0.95rem; margin-bottom: 4px; }
+  .time-content ul { padding-left: 18px; font-size: 0.9rem; }
+  .time-content ul li { margin-bottom: 3px; }
+  .time-content ol { padding-left: 20px; font-size: 0.88rem; margin-top: 4px; }
+  .time-content ol li { margin-bottom: 3px; }
+  .warn-box {
+    background: var(--warn-bg);
+    border: 1px solid #e8b4b0;
+    border-left: 4px solid var(--warn);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.88rem;
+    color: var(--warn);
+    margin-top: 10px;
+  }
+  .warn-box strong { display: block; margin-bottom: 2px; }
+  .note-box {
+    background: #fef9ec;
+    border: 1px solid #e8d89a;
+    border-left: 4px solid #c9a227;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.88rem;
+    color: #5a4a00;
+    margin-top: 10px;
+  }
+  .animal-name { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+  .animal-meta { font-size: 0.82rem; color: var(--muted); margin-bottom: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-top: 8px; }
+  th { background: var(--tag-bg); color: var(--accent); text-align: left; padding: 8px 10px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  td { padding: 8px 10px; border-top: 1px solid var(--border); vertical-align: top; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+  .intro-text { font-size: 0.95rem; line-height: 1.7; }
+  .intro-text p { margin-bottom: 10px; }
+  .photo-slot {
+    background: var(--tag-bg);
+    border: 2px dashed var(--border);
+    border-radius: 8px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin: 10px 0;
+  }
+  .contact-block { font-size: 0.95rem; }
+  .contact-block a { color: var(--accent); font-weight: 600; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🐾 Pet Care Instructions</h1>
+  <p>For Heidi, Gwyn &amp; Nel</p>
+</header>
+
+<nav>
+  <a class="active" onclick="show('welcome', this)">Welcome</a>
+  <a onclick="show('schedule', this)">Schedule</a>
+  <a onclick="show('animals', this)">Animals</a>
+
+</nav>
+
+<!-- WELCOME -->
+<div id="welcome" class="section active">
+  <div class="card">
+    <div class="intro-text">
+      <p>Howdy! 👋</p>
+      <p>Thanks for looking after my four-legged children. I care a lot about their care and I appreciate your attention and care to them.</p>
+      <p>This guide has everything you need. Use the tabs above to jump between the daily schedule, individual animal profiles, and contact info.</p>
+      <p>When in doubt — text me. That's what I'm here for.</p>
+    </div>
+  </div>
+  <div class="card">
+    <h2>The Crew</h2>
+    <table>
+      <tr><th>Name</th><th>Species</th><th>Notes</th></tr>
+      <tr><td><strong>Heidi</strong></td><td>Dog</td><td>13yo Black Mouth Cur. On cancer treatment. Gentle care.</td></tr>
+      <tr><td><strong>Gwyn</strong></td><td>Cat</td><td>5yo Tuxedo cat. Free feeds. Easy going.</td></tr>
+      <tr><td><strong>Nel</strong></td><td>Dog</td><td>2yo German Shorthaired Pointer. High energy.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- SCHEDULE -->
+<div id="schedule" class="section">
+
+  <div class="card">
+    <div class="time-block">
+      <div class="time-label">0700</div>
+      <div class="time-content">
+        <strong>🚽 Potty → 💊 Meds → 🍽 Breakfast</strong>
+        <ul>
+          <li>Take dogs outside first — they usually need to go after waking up</li>
+          <li>Then serve medications, then breakfast</li>
+        </ul>
+        <h3>Medications</h3>
+        <ul>
+          <li>Gwyn — Inhaler</li>
+          <li>Heidi — 1 tablet each: D, H, I, A, C<br>
+            <small style="color:var(--muted);">Each letter = a labeled pill bottle — match the letter to the bottle.</small>
+          </li>
+        </ul>
+        <h3>Food</h3>
+        <ul>
+          <li>Gwyn — Check bowl; free feed, just keep it full</li>
+          <li>Heidi — ½ can wet + ½ cup dry, covered with water &amp; mixed
+            <ul>
+              <li><small style="color:var(--muted);">Cover remaining wet food with the orange dog can cover and place in the fridge for the 1900 feeding.</small></li>
+            </ul>
+          </li>
+          <li>Nel — 1 cup dry</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="time-block">
+      <div class="time-label">1030</div>
+      <div class="time-content">
+        <strong>🦮 Morning Dog Walk</strong>
+        <ul>
+          <li>Leisurely pace — stretch legs, touch grass</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="time-block">
+      <div class="time-label">1530</div>
+      <div class="time-content">
+        <strong>🏃 Afternoon Dog Walk</strong>
+        <ul>
+          <li>More intense exercise — especially important for Nel</li>
+          <li>Goal is to regulate her energy for the evening</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="time-block">
+      <div class="time-label">1830</div>
+      <div class="time-content">
+        <strong>🐕 Early Dinner Lobbying</strong>
+        <ul>
+          <li>The dogs may start asking for dinner around 1830 — that's fine, go ahead and feed them.</li>
+          <li>Dinner window is 1830–1900, whenever works for you.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="time-block">
+      <div class="time-label">1900</div>
+      <div class="time-content">
+        <strong>💊 Medication #2 + 🍽 Dinner</strong>
+        <h3>Medications</h3>
+        <ul>
+          <li>Gwyn — Inhaler</li>
+          <li>Heidi — 1 tablet each: D, H, I, F, C</li>
+        </ul>
+        <h3>Food</h3>
+        <ul>
+          <li>Gwyn — Check bowl; keep it full</li>
+          <li>Heidi — ½ can wet + ½ cup dry:
+            <ol>
+              <li>Add ½ cup dry to bowl</li>
+              <li>Spoon remaining wet food from fridge over dry</li>
+              <li>Fill bowl ¾ of the way with hot water using the black on-demand dispenser (next to window)</li>
+              <li>Mix together</li>
+            </ol>
+          </li>
+          <li>Nel — 1 cup dry</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="time-block">
+      <div class="time-label">2000</div>
+      <div class="time-content">
+        <strong>💊 Medication #3</strong>
+        <div class="warn-box">
+          <strong>⚠️ Chemotherapy Medication</strong>
+          Please use gloves when handling. Gloves are located next to Gwyn's food bowl.
+        </div>
+        <h3>Medications</h3>
+        <ul>
+          <li>Heidi — 1 Chemo Tablet
+            <ul style="font-size:0.9rem; margin-top:4px;">
+              <li>Located in the fridge door in a yellow bag</li>
+              <li>Individually wrapped — do not break, administer whole</li>
+              <li>Wash hands thoroughly after</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ANIMALS -->
+<div id="animals" class="section">
+
+  <div class="card">
+    <div class="animal-name">🐕 Heidi</div>
+    <div class="animal-meta">13 years old · Black Mouth Cur · Cancer treatment</div>
+    <table>
+      <tr><th>Item</th><th>Details</th></tr>
+      <tr><td>Food</td><td>½ can wet + ½ cup dry, covered with water &amp; mixed. Use the black hot water appliance next to the window at 1900.</td></tr>
+      <tr><td>Med #1 (0700)</td><td>1 tablet each: D, H, I, A, C</td></tr>
+      <tr><td>Med #2 (1900)</td><td>1 tablet each: D, H, I, F, C</td></tr>
+      <tr><td>Med #3 (2000)</td><td>Chemo tablet — see caution below</td></tr>
+    </table>
+    <div class="warn-box" style="margin-top:12px;">
+      <strong>⚠️ Chemo Tablet (2000)</strong>
+      Wear gloves. Gloves located next to Gwyn's food bowl. Wash hands thoroughly after. Located in fridge door in a yellow bag. Individually wrapped — do not break, administer whole.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="animal-name">🐈 Gwyn</div>
+    <div class="animal-meta">5 years old · Tuxedo cat</div>
+    <table>
+      <tr><th>Item</th><th>Details</th></tr>
+      <tr><td>Food</td><td>Free feed — just ensure the bowl isn't empty and she'll be happy</td></tr>
+      <tr><td>Medications</td><td>Inhaler — 0700 &amp; 1900</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="animal-name">🐕 Nel</div>
+    <div class="animal-meta">2 years old · German Shorthaired Pointer</div>
+    <table>
+      <tr><th>Item</th><th>Details</th></tr>
+      <tr><td>Food</td><td>1 cup dry — 0700 &amp; 1900</td></tr>
+      <tr><td>Medications</td><td>None</td></tr>
+      <tr><td>Exercise</td><td>High energy — needs the 1530 walk to be a real walk</td></tr>
+    </table>
+    <div class="note-box" style="margin-top:12px;">
+      Nel is young and has a lot of energy. The afternoon walk intensity matters — a good workout in the afternoon makes for a calm evening.
+    </div>
+  </div>
+
+</div>
+
+
+
+<script>
+  function show(id, el) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    el.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+</script>
+
+</body>
+</html>
