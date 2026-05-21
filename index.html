@@ -47,8 +47,8 @@
   nav a {
     flex: 1;
     text-align: center;
-    padding: 14px 8px;
-    font-size: 0.85rem;
+    padding: 14px 4px;
+    font-size: 0.8rem;
     font-weight: 600;
     color: var(--muted);
     text-decoration: none;
@@ -56,10 +56,7 @@
     transition: all 0.2s;
     cursor: pointer;
   }
-  nav a.active, nav a:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
+  nav a.active, nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
   .section { display: none; padding: 20px 16px; max-width: 640px; margin: 0 auto; }
   .section.active { display: block; }
   .card {
@@ -70,7 +67,7 @@
     margin-bottom: 16px;
     box-shadow: var(--shadow);
   }
-  .card h2 { font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+  .card h2 { font-size: 1rem; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
   .card h3 { font-size: 0.95rem; font-weight: 600; color: var(--accent2); margin: 12px 0 4px; }
   .time-block { display: flex; gap: 14px; align-items: flex-start; }
   .time-label { font-size: 1rem; font-weight: 700; color: var(--accent); min-width: 52px; padding-top: 2px; }
@@ -109,20 +106,6 @@
   .divider { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
   .intro-text { font-size: 0.95rem; line-height: 1.7; }
   .intro-text p { margin-bottom: 10px; }
-  .photo-slot {
-    background: var(--tag-bg);
-    border: 2px dashed var(--border);
-    border-radius: 8px;
-    height: 160px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin: 10px 0;
-  }
-  .contact-block { font-size: 0.95rem; }
-  .contact-block a { color: var(--accent); font-weight: 600; text-decoration: none; }
 </style>
 </head>
 <body>
@@ -136,7 +119,7 @@
   <a class="active" onclick="show('welcome', this)">Welcome</a>
   <a onclick="show('schedule', this)">Schedule</a>
   <a onclick="show('animals', this)">Animals</a>
-
+  <a onclick="show('commands', this)">Commands</a>
 </nav>
 
 <!-- WELCOME -->
@@ -145,8 +128,8 @@
     <div class="intro-text">
       <p>Howdy! 👋</p>
       <p>Thanks for looking after my four-legged children. I care a lot about their care and I appreciate your attention and care to them.</p>
-      <p>This guide has everything you need. Use the tabs above to jump between the daily schedule, individual animal profiles, and contact info.</p>
-      <p>When in doubt — text me. That's what I'm here for.</p>
+      <p>This guide has everything you need. Use the tabs above to jump between the daily schedule, individual animal profiles, and commands.</p>
+      <p>When in doubt, text me. That's what I'm here for.</p>
     </div>
   </div>
   <div class="card">
@@ -156,6 +139,17 @@
       <tr><td><strong>Heidi</strong></td><td>Dog</td><td>13yo Black Mouth Cur. On cancer treatment. Gentle care.</td></tr>
       <tr><td><strong>Gwyen</strong></td><td>Cat</td><td>5yo Tuxedo cat. Free feeds. Easy going.</td></tr>
       <tr><td><strong>Nel</strong></td><td>Dog</td><td>2yo German Shorthaired Pointer. High energy.</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Where Things Are</h2>
+    <table>
+      <tr><th>Item</th><th>Location</th></tr>
+      <tr><td>Chemo tablet</td><td>Fridge door, yellow bag</td></tr>
+      <tr><td>Dog food &amp; snacks</td><td>Pantry</td></tr>
+      <tr><td>Hot water dispenser</td><td>Counter, next to window (for Heidi's 1900 meal)</td></tr>
+      <tr><td>Litter box</td><td>Master closet, closest to the sink (no need to change; optional)</td></tr>
+      <tr><td>Medications (general)</td><td>Top of the fridge</td></tr>
     </table>
   </div>
 </div>
@@ -169,25 +163,25 @@
       <div class="time-content">
         <strong>🚽 Potty → 💊 Meds → 🍽 Breakfast</strong>
         <ul>
-          <li>Take dogs outside first — they usually need to go after waking up</li>
+          <li>Take dogs outside first; they usually need to go after waking up</li>
           <li>Then serve medications, then breakfast</li>
         </ul>
         <h3>Medications</h3>
         <ul>
-          <li>Gwyen — Inhaler</li>
-          <li>Heidi — 1 tablet each: D, H, I, A, C<br>
-            <small style="color:var(--muted);">Each letter = a labeled pill bottle — match the letter to the bottle.</small>
+          <li>Gwyen: Inhaler
+            <ul><li><small style="color:var(--muted);">Hold her, place on face, wait 10 seconds, release. If she puts up a fight, once is more than sufficient; don't stress it.</small></li></ul>
+          </li>
+          <li>Heidi: 1 tablet each: D, H, I, A; 2 capsules: C<br>
+            <small style="color:var(--muted);">Each letter = a labeled pill bottle; match the letter to the bottle.</small>
           </li>
         </ul>
         <h3>Food</h3>
         <ul>
-          <li>Gwyen — Check bowl; free feed, just keep it full</li>
-          <li>Heidi — ½ can wet + ½ cup dry, covered with water &amp; mixed
-            <ul>
-              <li><small style="color:var(--muted);">Cover remaining wet food with the orange dog can cover and place in the fridge for the 1900 feeding.</small></li>
-            </ul>
+          <li>Gwyen: Check bowl; free feed, just keep it full</li>
+          <li>Heidi: ½ can wet + ½ cup dry, covered with water &amp; mixed
+            <ul><li><small style="color:var(--muted);">Cover remaining wet food with the orange can cover and place in the fridge for the 1900 feeding.</small></li></ul>
           </li>
-          <li>Nel — 1 cup dry</li>
+          <li>Nel: 1 cup dry</li>
         </ul>
       </div>
     </div>
@@ -199,7 +193,7 @@
       <div class="time-content">
         <strong>🦮 Morning Dog Walk</strong>
         <ul>
-          <li>Leisurely pace — stretch legs, touch grass</li>
+          <li>Leisurely pace; stretch legs, touch grass</li>
         </ul>
       </div>
     </div>
@@ -211,7 +205,7 @@
       <div class="time-content">
         <strong>🏃 Afternoon Dog Walk</strong>
         <ul>
-          <li>More intense exercise — especially important for Nel</li>
+          <li>More intense exercise; especially important for Nel</li>
           <li>Goal is to regulate her energy for the evening</li>
         </ul>
       </div>
@@ -224,8 +218,8 @@
       <div class="time-content">
         <strong>🐕 Early Dinner Lobbying</strong>
         <ul>
-          <li>The dogs may start asking for dinner around 1830 — that's fine, go ahead and feed them.</li>
-          <li>Dinner window is 1830–1900, whenever works for you.</li>
+          <li>The dogs may start asking for dinner around 1830; that's fine, go ahead and feed them.</li>
+          <li>Dinner window is 1830-1900, whenever works for you.</li>
         </ul>
       </div>
     </div>
@@ -238,13 +232,15 @@
         <strong>💊 Medication #2 + 🍽 Dinner</strong>
         <h3>Medications</h3>
         <ul>
-          <li>Gwyen — Inhaler</li>
-          <li>Heidi — 1 tablet each: D, H, I, F, C</li>
+          <li>Gwyen: Inhaler
+            <ul><li><small style="color:var(--muted);">Hold her, place on face, wait 10 seconds, release. Once is sufficient; don't stress if she fights it.</small></li></ul>
+          </li>
+          <li>Heidi: 1 tablet each: D, H, I, F; 2 capsules: C</li>
         </ul>
         <h3>Food</h3>
         <ul>
-          <li>Gwyen — Check bowl; keep it full</li>
-          <li>Heidi — ½ can wet + ½ cup dry:
+          <li>Gwyen: Check bowl; keep it full</li>
+          <li>Heidi: ½ can wet + ½ cup dry:
             <ol>
               <li>Add ½ cup dry to bowl</li>
               <li>Spoon remaining wet food from fridge over dry</li>
@@ -252,7 +248,7 @@
               <li>Mix together</li>
             </ol>
           </li>
-          <li>Nel — 1 cup dry</li>
+          <li>Nel: 1 cup dry</li>
         </ul>
       </div>
     </div>
@@ -269,10 +265,10 @@
         </div>
         <h3>Medications</h3>
         <ul>
-          <li>Heidi — 1 Chemo Tablet
+          <li>Heidi: 1 Chemo Tablet
             <ul style="font-size:0.9rem; margin-top:4px;">
               <li>Located in the fridge door in a yellow bag</li>
-              <li>Individually wrapped — do not break, administer whole</li>
+              <li>Individually wrapped; do not break, administer whole</li>
               <li>Wash hands thoroughly after</li>
             </ul>
           </li>
@@ -292,13 +288,14 @@
     <table>
       <tr><th>Item</th><th>Details</th></tr>
       <tr><td>Food</td><td>½ can wet + ½ cup dry, covered with water &amp; mixed. Use the black hot water appliance next to the window at 1900.</td></tr>
-      <tr><td>Med #1 (0700)</td><td>1 tablet each: D, H, I, A, C</td></tr>
-      <tr><td>Med #2 (1900)</td><td>1 tablet each: D, H, I, F, C</td></tr>
-      <tr><td>Med #3 (2000)</td><td>Chemo tablet — see caution below</td></tr>
+      <tr><td>Exercise</td><td>Walk at her pace; follow her lead.</td></tr>
+      <tr><td>Med #1 (0700)</td><td>1 tablet each: D, H, I, A; 2 capsules: C</td></tr>
+      <tr><td>Med #2 (1900)</td><td>1 tablet each: D, H, I, F; 2 capsules: C</td></tr>
+      <tr><td>Med #3 (2000)</td><td>Chemo tablet; see caution below</td></tr>
     </table>
     <div class="warn-box" style="margin-top:12px;">
       <strong>⚠️ Chemo Tablet (2000)</strong>
-      Wear gloves. Gloves located next to Gwyen's food bowl. Wash hands thoroughly after. Located in fridge door in a yellow bag. Individually wrapped — do not break, administer whole.
+      Wear gloves. Gloves located next to Gwyen's food bowl. Wash hands thoroughly after. Located in fridge door in a yellow bag. Individually wrapped; do not break, administer whole.
     </div>
   </div>
 
@@ -307,8 +304,9 @@
     <div class="animal-meta">5 years old · Tuxedo cat</div>
     <table>
       <tr><th>Item</th><th>Details</th></tr>
-      <tr><td>Food</td><td>Free feed — just ensure the bowl isn't empty and she'll be happy</td></tr>
-      <tr><td>Medications</td><td>Inhaler — 0700 &amp; 1900</td></tr>
+      <tr><td>Food</td><td>Free feed; just ensure the bowl isn't empty and she'll be happy</td></tr>
+      <tr><td>Litter</td><td>No need to change; if you'd like to, it's in the master closet closest to the sink</td></tr>
+      <tr><td>Medications</td><td>Inhaler at 0700 &amp; 1900. Hold her, place on face, wait 10 seconds, release. Once is sufficient; don't stress if she fights it. Honestly, finding her may be the harder part.</td></tr>
     </table>
   </div>
 
@@ -317,18 +315,58 @@
     <div class="animal-meta">2 years old · German Shorthaired Pointer</div>
     <table>
       <tr><th>Item</th><th>Details</th></tr>
-      <tr><td>Food</td><td>1 cup dry — 0700 &amp; 1900</td></tr>
+      <tr><td>Food</td><td>1 cup dry at 0700 &amp; 1900</td></tr>
+      <tr><td>Exercise</td><td>High energy; 20-60 min depending on conditions. She'll let you know when she's done.</td></tr>
       <tr><td>Medications</td><td>None</td></tr>
-      <tr><td>Exercise</td><td>High energy — needs the 1530 walk to be a real walk</td></tr>
     </table>
-    <div class="note-box" style="margin-top:12px;">
-      Nel is young and has a lot of energy. The afternoon walk intensity matters — a good workout in the afternoon makes for a calm evening.
-    </div>
   </div>
 
 </div>
 
+<!-- COMMANDS -->
+<div id="commands" class="section">
 
+  <div class="card">
+    <h2>Command Matrix</h2>
+    <table>
+      <tr>
+        <th>Command</th>
+        <th style="text-align:center;">Heidi</th>
+        <th style="text-align:center;">Nel</th>
+        <th style="text-align:center;">Gwyen</th>
+      </tr>
+      <tr><td>Here</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;"></td></tr>
+      <tr><td>Sit</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;"></td></tr>
+      <tr><td>Down</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;"></td></tr>
+      <tr><td>Wait</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;"></td></tr>
+      <tr><td>Go</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;"></td></tr>
+      <tr><td>"Scooch ya booch"</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;"></td></tr>
+      <tr><td>Move</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;"></td></tr>
+      <tr><td>"Get yer bite"</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;"></td></tr>
+      <tr><td>"Excuse me?!"</td><td style="text-align:center;">✓</td><td style="text-align:center;">✓</td><td style="text-align:center;"></td></tr>
+      <tr><td>"Den, Den"</td><td style="text-align:center;"></td><td style="text-align:center;"></td><td style="text-align:center;">✓</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Command Notes</h2>
+    <table>
+      <tr><th>Command</th><th>Description</th></tr>
+      <tr><td>Go</td><td>Move forward</td></tr>
+      <tr><td>"Scooch ya booch"</td><td>Friendly cue to get out of the way</td></tr>
+      <tr><td>Move</td><td>Serious version; get out of the way, now</td></tr>
+      <tr><td>"Get yer bite"</td><td>Release cue to eat their meals</td></tr>
+      <tr><td>"Excuse me?!"</td><td>Knock it off; correct yourself now</td></tr>
+      <tr><td>"Den, Den"</td><td>Gwyen's come cue; call her name like this and she'll come</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Name Escalation</h2>
+    <p style="font-size:0.9rem;">Using their full name or a firmer tone means business. Nel goes Nel → Nelly → Nelliel. Heidi goes Heidi → Hei-Di. Gwyen goes Gwyen → Gwyendolyn Stacy.</p>
+  </div>
+
+</div>
 
 <script>
   function show(id, el) {
